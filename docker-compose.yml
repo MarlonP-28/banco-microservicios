@@ -1,0 +1,61 @@
+
+services:
+      cliente-persona-service:
+        build: ./cliente-persona-service
+        ports:
+          - "8081:8081"
+        depends_on:
+          - db
+          - kafka
+        environment:
+          SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/client_persona
+          SPRING_DATASOURCE_USERNAME: myuser
+          SPRING_DATASOURCE_PASSWORD: mypassword
+          SPRING_JPA_HIBERNATE_DDL_AUTO: update
+          SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+
+      cuenta-movimiento-service:
+        build: ./cuenta-movimiento-service
+        ports:
+          - "8082:8082"
+        depends_on:
+          - db
+          - kafka
+        environment:
+          SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/account_movement
+          SPRING_DATASOURCE_USERNAME: myuser
+          SPRING_DATASOURCE_PASSWORD: mypassword
+          SPRING_JPA_HIBERNATE_DDL_AUTO: update
+          SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+
+      db:
+        image: postgres:13
+        volumes:
+          - db-data:/var/lib/postgresql/data
+        environment:
+          POSTGRES_USER: myuser
+          POSTGRES_PASSWORD: mypassword
+          POSTGRES_DB: client_persona #  Will be overwritten
+        ports:
+          - "5432:5432"
+
+      kafka:
+        image: 'bitnami/kafka:latest'
+        ports:
+          - '9092:9092'
+        environment:
+          KAFKA_CFG_LISTENERS: PLAINTEXT://:9092
+          KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+          KAFKA_CFG_ZOOKEEPER_CONNECT: zookeeper:2181
+        depends_on:
+          - zookeeper
+
+      zookeeper:
+        image: 'bitnami/zookeeper:latest'
+        ports:
+          - '2181:2181'
+        environment:
+          ALLOW_ANONYMOUS_LOGIN: 'yes'
+
+volumes:
+      db-data:

@@ -1,0 +1,8 @@
+com\example\clientepersona\repository\ClienteRepository.class
+com\example\clientpersona\messaging\ClienteProducer.class
+com\example\clientpersona\ClientPersonaServiceApplication.class
+com\example\clientepersona\service\ClienteService.class
+com\example\clientepersona\config\KafkaProducerConfig.class
+com\example\clientepersona\controller\ClienteController.class
+com\example\clientepersona\model\Cliente.class
+com\example\clientepersona\model\Persona.class

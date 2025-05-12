@@ -1,0 +1,8 @@
+C:\Users\pmarl\Downloads\banco-microservicios\cliente-persona-service\src\main\java\com\example\clientepersona\ClientPersonaServiceApplication.java
+C:\Users\pmarl\Downloads\banco-microservicios\cliente-persona-service\src\main\java\com\example\clientepersona\config\KafkaProducerConfig.java
+C:\Users\pmarl\Downloads\banco-microservicios\cliente-persona-service\src\main\java\com\example\clientepersona\controller\ClienteController.java
+C:\Users\pmarl\Downloads\banco-microservicios\cliente-persona-service\src\main\java\com\example\clientepersona\messaging\ClienteProducer.java
+C:\Users\pmarl\Downloads\banco-microservicios\cliente-persona-service\src\main\java\com\example\clientepersona\model\Cliente.java
+C:\Users\pmarl\Downloads\banco-microservicios\cliente-persona-service\src\main\java\com\example\clientepersona\model\Persona.java
+C:\Users\pmarl\Downloads\banco-microservicios\cliente-persona-service\src\main\java\com\example\clientepersona\repository\ClienteRepository.java
+C:\Users\pmarl\Downloads\banco-microservicios\cliente-persona-service\src\main\java\com\example\clientepersona\service\ClienteService.java

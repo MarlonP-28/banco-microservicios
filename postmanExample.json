@@ -1,0 +1,370 @@
+{
+	"info": {
+		"_postman_id": "TU_ID_DE_COLECCION",
+		"name": "Banco Microservicios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cliente Persona Service",
+			"item": [
+				{
+					"name": "Crear Cliente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Nuevo Cliente\",\n    \"genero\": \"Masculino\",\n    \"edad\": 25,\n    \"identificacion\": \"9876543210\",\n    \"direccion\": \"Otra Calle 456\",\n    \"telefono\": \"0123456789\",\n    \"contrasena\": \"newsecure\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": [],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\n        pm.response.to.have.status(201);\n    });\n\n    pm.test(\"Content-Type is application/json\", function () {\n        pm.response.to.have.header(\"Content-Type\", \"application/json\");\n    });\n\n    pm.test(\"Response body is not empty\", function () {\n        pm.expect(pm.response.text()).to.be.ok;\n    });\n\n    // Puedes agregar más aserciones para verificar campos específicos del cuerpo de la respuesta\n    // Ejemplo:\n    // var jsonData = pm.response.json();\n    // pm.test(\"Nombre en la respuesta es Nuevo Cliente\", function () {\n    //     pm.expect(jsonData.nombre).to.eql(\"Nuevo Cliente\");\n    // });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
+				},
+				{
+					"name": "Obtener Cliente por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": [],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\n        pm.response.to.have.status(200);\n    });\n\n    pm.test(\"Content-Type is application/json\", function () {\n        pm.response.to.have.header(\"Content-Type\", \"application/json\");\n    });\n\n    pm.test(\"Response body is not empty\", function () {\n        pm.expect(pm.response.text()).to.be.ok;\n    });\n\n    // Puedes agregar aserciones para verificar campos específicos del cliente obtenido\n    // Ejemplo:\n    // var jsonData = pm.response.json();\n    // pm.test(\"ID del cliente es 1\", function () {\n    //     pm.expect(jsonData.id).to.eql(1);\n    // });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
+				},
+				{
+					"name": "Actualizar Cliente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Cliente Actualizado\",\n    \"direccion\": \"Nueva Dirección 789\",\n    \"telefono\": \"1122334455\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": [],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\n        pm.response.to.have.status(200);\n    });\n\n    pm.test(\"Content-Type is application/json\", function () {\n        pm.response.to.have.header(\"Content-Type\", \"application/json\");\n    });\n\n    // Puedes agregar aserciones para verificar si la actualización fue exitosa\n    // (dependiendo de la respuesta de tu API)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
+				},
+				{
+					"name": "Eliminar Cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": [],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204 or 200\", function () {\n        pm.expect(pm.response.code).to.be.oneOf([204, 200]);\n    });\n\n    // Puedes agregar más aserciones si tu API devuelve algún cuerpo después de la eliminación"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cuenta Movimiento Service",
+			"item": [
+				{
+					"name": "Crear Cuenta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clienteId\": 1,\n    \"tipoCuenta\": \"AHORROS\",\n    \"saldoInicial\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/cuentas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cuentas"
+							]
+						}
+					},
+					"response": [],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\n        pm.response.to.have.status(201);\n    });\n\n    pm.test(\"Content-Type is application/json\", function () {\n        pm.response.to.have.header(\"Content-Type\", \"application/json\");\n    });\n\n    pm.test(\"Response body is not empty\", function () {\n        pm.expect(pm.response.text()).to.be.ok;\n    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
+				},
+				{
+					"name": "Obtener Cuenta por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/cuentas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cuentas",
+								"1"
+							]
+						}
+					},
+					"response": [],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\n        pm.response.to.have.status(200);\n    });\n\n    pm.test(\"Content-Type is application/json\", function () {\n        pm.response.to.have.header(\"Content-Type\", \"application/json\");\n    });\n\n    pm.test(\"Response body is not empty\", function () {\n        pm.expect(pm.response.text()).to.be.ok;\n    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
+				},
+				{
+					"name": "Realizar Movimiento (Débito)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cuentaId\": 1,\n    \"tipoMovimiento\": \"DEBITO\",\n    \"valor\": 50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/movimientos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"movimientos"
+							]
+						}
+					},
+					"response": [],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\n        pm.response.to.have.status(200);\n    });\n\n    pm.test(\"Content-Type is application/json\", function () {\n        pm.response.to.have.header(\"Content-Type\", \"application/json\");\n    });\n\n    pm.test(\"Response body is not empty\", function () {\n        pm.expect(pm.response.text()).to.be.ok;\n    });\n\n    // Puedes agregar aserciones para verificar el saldo de la cuenta después del débito"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
+				},
+				{
+					"name": "Realizar Movimiento (Crédito)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cuentaId\": 1,\n    \"tipoMovimiento\": \"CREDITO\",\n    \"valor\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/movimientos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"movimientos"
+							]
+						}
+					},
+					"response": [],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\n        pm.response.to.have.status(200);\n    });\n\n    pm.test(\"Content-Type is application/json\", function () {\n        pm.response.to.have.header(\"Content-Type\", \"application/json\");\n    });\n\n    pm.test(\"Response body is not empty\", function () {\n        pm.expect(pm.response.text()).to.be.ok;\n    });\n\n    // Puedes agregar aserciones para verificar el saldo de la cuenta después del crédito"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
+				},
+				{
+					"name": "Obtener Movimientos por Cuenta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/cuentas/1/movimientos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cuentas",
+								"1",
+								"movimientos"
+							]
+						}
+					},
+					"response": [],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\n        pm.response.to.have.status(200);\n    });\n\n    pm.test(\"Content-Type is application/json\", function () {\n        pm.response.to.have.header(\"Content-Type\", \"application/json\");\n    });\n\n    pm.test(\"Response body is not empty\", function () {\n        pm.expect(pm.response.text()).to.be.ok;\n    });\n\n    pm.test(\"Response body is an array\", function () {\n        var jsonData = pm.response.json();\n        pm.expect(Array.isArray(jsonData)).to.be.true;\n    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
